@@ -2,7 +2,7 @@ from create_db import *
 from fill_db import *
 
 if __name__ == '__main__':
-
+# 1
     sql_select_five_highest = " SELECT round(AVG(m.mark)), s.first_name, s.last_name " \
                               "FROM marks m " \
                               "LEFT JOIN students s " \
@@ -11,6 +11,7 @@ if __name__ == '__main__':
                               "ORDER BY AVG(m.mark)" \
                               "DESC LIMIT 5;"
 
+# 2
     sql_select_one_highest = "SELECT dis.discipline, round(avg(m.mark)), s.first_name, s.last_name " \
                              "FROM marks m " \
                              "JOIN students s ON m.student_id = s.id " \
@@ -19,24 +20,29 @@ if __name__ == '__main__':
                              "ORDER BY dis.id " \
                              "DESC LIMIT 1;"
 
+# 3
     sql_select_group_average = "SELECT avg(m.mark) " \
                                "FROM marks m " \
                                "JOIN students as s ON m.student_id = s.id " \
                                "GROUP BY s.group_id; "
 
+# 4
     sql_select_average_mark = "SELECT avg(m.mark) " \
                               "FROM marks m " \
                               "JOIN students as s on m.student_id = s.id " \
                               "GROUP BY s.group_id;"
 
+# 5
     sql_select_teacher_courses = "SELECT s.discipline, t.last_name " \
                                  "FROM disciplines s " \
                                  "JOIN teachers as t ON s.teacher_id = t.id;"
 
+# 6
     sql_select_group_students = "SELECT s.first_name, s.last_name " \
                                 "FROM students s " \
                                 "WHERE s.group_id = 1;"
 
+# 7
     sql_select_discipline_marks = "SELECT s.first_name, s.last_name, m.mark, g.title, dis.discipline " \
                                   "FROM students s " \
                                   "JOIN marks m ON m.student_id = s.id  " \
@@ -45,6 +51,7 @@ if __name__ == '__main__':
                                   "WHERE s.group_id = 2 and m.discipline_id = 1 " \
                                   "ORDER BY m.mark DESC;"
 
+# 8
     sql_select_last_marks = "SELECT max(m.lesson_date), s.first_name, s.last_name, g.title, dis.discipline " \
                             "FROM marks m " \
                             "LEFT JOIN students as s ON s.id = m.student_id " \
@@ -53,12 +60,14 @@ if __name__ == '__main__':
                             "WHERE m.discipline_id = 3 and g.id = 2" \
                             "GROUP BY s.first_name, s.last_name, g.title, dis.discipline;"
 
+# 9
     sql_select_student_disciplines = "SELECT DISTINCT s.id, s.first_name, s.last_name, dis.discipline " \
                                      "FROM students s  " \
                                      "JOIN marks m ON m.student_id  = s.id  " \
                                      "JOIN disciplines dis ON dis.id = m.discipline_id  " \
                                      "WHERE s.id = 3"
 
+# 10
     sql_select_student_teacher = "SELECT DISTINCT s.id, s.first_name, s.last_name, dis.discipline, t.last_name " \
                                  "FROM students s " \
                                  "JOIN marks m ON m.student_id  = s.id " \
@@ -66,6 +75,7 @@ if __name__ == '__main__':
                                  "JOIN teachers t ON m.teacher_id = t.id " \
                                  "WHERE s.id = 1 and t.id = 2"
 
+# 11
     sql_select_student_mark = "SELECT round(avg(m.mark)),s.first_name, s.last_name " \
                               "FROM students s " \
                               "JOIN marks m ON m.student_id = s.id " \
@@ -73,11 +83,13 @@ if __name__ == '__main__':
                               "WHERE s.id = 1" \
                               "GROUP BY s.first_name, s.last_name;"
 
+# 12
     sql_select_teacher_mark = "SELECT ROUND(AVG(m.mark)), t.first_name, t.last_name " \
                               "FROM teachers t " \
                               "JOIN marks m  ON teacher_id = m.teacher_id  " \
                               "WHERE  t.id = 3" \
                               "GROUP BY t.first_name, t.last_name;"
+
     tasks = [
         sql_select_five_highest, sql_select_one_highest, sql_select_group_average, sql_select_average_mark,
         sql_select_teacher_courses, sql_select_group_students, sql_select_discipline_marks, sql_select_last_marks,
